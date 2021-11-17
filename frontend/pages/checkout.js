@@ -7,6 +7,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import InjectedCheckoutForm from "../components/checkoutForm"
 import AppContext from "../components/context";
 import Cart from "../components/cart";
+import { getDisplayName } from "next/dist/shared/lib/utils";
 
 function Checkout() {
   // get app context
@@ -21,7 +22,7 @@ function Checkout() {
     <Row>
       <Col style={{ paddingRight: 0 }} sm={{ size: 3, order: 1, offset: 2 }}>
         <h1 style={{ margin: 20 }}>Checkout</h1>
-        <Cart isAuthenticated={isAuthenticated}/>
+        <Cart isAuthenticated={false}/>
       </Col>
       <Col style={{ paddingLeft: 5 }} sm={{ size: 6, order: 2 }}>
         <Elements stripe={stripePromise}>

@@ -9,13 +9,14 @@ import AppContext from "../components/context";
 import { ApolloProvider, HttpLink, InMemoryCache, ApolloClient } from "@apollo/client";
 import React, { Component } from "react";
 import App from "next/app";
+import { Router, Link, Route, Switch } from 'next/router';
 
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
-console.log(`URL: ${API_URL}`)
-const link = new HttpLink({ uri: `${API_URL}/graphql`})
-const cache = new InMemoryCache()
+console.log(`URL: ${API_URL}`);
+const link = new HttpLink({ uri: `${API_URL}/graphql`});
+const cache = new InMemoryCache();
 const client = new ApolloClient({link,cache});
 
 export default class MyApp extends App {
@@ -62,11 +63,7 @@ export default class MyApp extends App {
   setUser = (user) => {
     this.setState({ user });
   };
-
-
-  setUser = (user) => {
-    this.setState({ user });
-  };
+   
 
   addItem = (item) => {
     let { items } = this.state.cart;
@@ -149,7 +146,8 @@ export default class MyApp extends App {
       removeItem: this.removeItem
      
     }}>
-      <Head>
+
+    <Head>
           <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -157,8 +155,10 @@ export default class MyApp extends App {
             crossOrigin="anonymous"
           />
       </Head>
+
+      
     <ApolloProvider client={client}>
-  
+    
     
       <Layout>
           <Component {...pageProps} />

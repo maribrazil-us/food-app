@@ -10,8 +10,7 @@ function Cart() {
   const appContext = useContext(AppContext);
   const router = useRouter();
 
-  const { cart, user,isAuthenticated } = appContext;
-  
+  const { cart, isAuthenticated } = appContext;
 
   return (
     <div>
@@ -78,38 +77,33 @@ function Cart() {
                     <h5 style={{ fontWeight: 100, color: "gray" }}>Total:</h5>
                     <h3>${appContext.cart.total.toFixed(2)}</h3>
                   </Badge>
-                
-                    <div
-                      style={{
-                        marginTop: 10,
-                        marginRight: 10,
-                      }}
-                    >
-                      <Link href="/checkout/">
-                        <Button style={{ width: "100%" }} color="primary" id="orderButton">
+                  
+                      <Link href="/checkout">
+                        <Button style={{ width: "100%" }} color="primary">
                           <a>Order</a>
                         </Button>
                       </Link>
                     </div>
-              
-                </div>
+               
+               
               ) : (
                 <>
-    
+                  {router.pathname === "/checkout" && (
                     <small
                       style={{ color: "blue" }}
                       onClick={() => window.history.back()}
                     >
                       back to restaurant
                     </small>
+                  )}
                 </>
               )
             ) : (
               <h5>Login to Order</h5>
             )}
           </div>
-          {console.log(cart.items.length)}
-          {console.log("boolean", isAuthenticated)}
+          {console.log(router.pathname)}
+          {console.log(isAuthenticated)}
         </CardBody>
       </Card>
       <style jsx>{`

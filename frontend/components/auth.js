@@ -5,6 +5,8 @@ import Router from "next/router";
 import Cookie from "js-cookie";
 import axios from "axios";
 
+
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
 
 //register a new user
@@ -32,7 +34,7 @@ export const registerUser = (username, email, password) => {
   });
 };
 
-export const login = (identifier, password) => {
+export const login = (identifier, password) => {  
   //prevent function from being ran on the server
   if (typeof window === "undefined") {
     return;

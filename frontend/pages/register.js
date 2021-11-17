@@ -1,5 +1,6 @@
 /* pages/register.js */
 import React, { useState, useContext } from "react";
+import { getSession, signIn, signOut } from "next-auth/client";
 
 import {
   Container,
@@ -11,8 +12,9 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { registerUser } from "../components/auth"
+import { registerUser } from "../components/auth";
 import AppContext from "../components/context";
+
 
 const Register = () => {
   const [data, setData] = useState({ email: "", username: "", password: "" });
@@ -103,10 +105,12 @@ const Register = () => {
                             setError(error.response.data);
                             setLoading(false);
                           });
+                          alert(`Successfully created account for ${data.username}`)
                       }}
                     >
                       {loading ? "Loading.." : "Submit"}
                     </Button>
+                    
                   </FormGroup>
                 </fieldset>
               </Form>
