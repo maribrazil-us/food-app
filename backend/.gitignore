@@ -114,3 +114,5 @@ build
 .strapi-updater.json
 
 order.js
+
+package-lock.json
