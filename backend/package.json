@@ -9,12 +9,11 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
+  "devDependencies": {},
   "dependencies": {
-    "knex": "0.21.18",
-    "sqlite3": "5.0.0",
     "strapi": "3.6.8",
     "strapi-admin": "3.6.8",
-    "strapi-connector-bookshelf": "3.6.8",
+    "strapi-connector-mongoose": "3.6.8",
     "strapi-plugin-content-manager": "3.6.8",
     "strapi-plugin-content-type-builder": "3.6.8",
     "strapi-plugin-email": "3.6.8",
@@ -23,13 +22,13 @@
     "strapi-plugin-upload": "3.6.8",
     "strapi-plugin-users-permissions": "3.6.8",
     "strapi-utils": "3.6.8",
-    "stripe": "^8.186.1"
+    "stripe": "^8.190.0"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "ec1dc51e-cb72-4703-8cf9-e6ddd57016b1"
+    "uuid": "72a77343-3639-45a8-9d45-e73aa5d05003"
   },
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
