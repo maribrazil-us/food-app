@@ -52,11 +52,7 @@ export default function RestaurantList(props) {
                 <CardImg
                   top={true}
                   style={{ height: 200 }}
-                  src={
-                    process.env.NODE_ENV === "production"
-                      ? res.image.url
-                      : `${process.env.NEXT_PUBLIC_API_URL}${res.image.url}`
-                  }
+                  src={`http://localhost:1337` + res.image.url}
                   
                 />
                 <CardBody>

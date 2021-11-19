@@ -25,40 +25,40 @@ export default class MyApp extends App {
     cart: { items: [], total: 0 },
   };
 
-  componentDidMount() {
-    const token = Cookie.get("token");
+  //componentDidMount() {
+  //  const token = Cookie.get("token");
     // restore cart from cookie, this could also be tracked in a db
-    const cart = Cookie.get("cart");
+  //  const cart = Cookie.get("cart");
     //if items in cart, set items and total from cookie
-    console.log(cart);
+  //  console.log(cart);
 
-    if (typeof cart === "string" && cart !== "undefined") {
-      console.log("foyd");
-      JSON.parse(cart).forEach((item) => {
-        this.setState({
-          cart: { items: JSON.parse(cart), total: item.price * item.quantity },
-        });
-      });
-    }
-    if (token) {
+  //  if (typeof cart === "string" && cart !== "undefined") {
+  //    console.log("foyd");
+    //  JSON.parse(cart).forEach((item) => {
+      //  this.setState({
+        //  cart: { items: JSON.parse(cart), total: item.price * item.quantity },
+       // });
+      //});
+   // }
+   // if (token) {
       // authenticate the token on the server and place set user object
-      fetch(`${API_URL}/users/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then(async (res) => {
+     // fetch(`${API_URL}/users/me`, {
+       // headers: {
+         // Authorization: `Bearer ${token}`,
+        //},
+     // }).then(async (res) => {
         // if res comes back not valid, token is not valid
         // delete the token and log the user out on client
-        if (!res.ok) {
-          Cookie.remove("token");
-          this.setState({ user: null });
-          return null;
-        }
-        const user = await res.json();
-        this.setUser(user);
-      });
-    }
-  }
+       // if (!res.ok) {
+         // Cookie.remove("token");
+         // this.setState({ user: null });
+         // return null;
+       // }
+        //const user = await res.json();
+       // this.setUser(user);
+     // });
+   // }
+ // }
 
   setUser = (user) => {
     this.setState({ user });
