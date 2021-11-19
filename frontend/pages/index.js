@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { InputGroup,Input, Button} from "reactstrap";
 
 
-
 export default function Home({restaurants}) {
   const [query, setQuery] = useState("");
 
