@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "backend-db",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -17,7 +17,7 @@
     "strapi-plugin-content-manager": "3.6.8",
     "strapi-plugin-content-type-builder": "3.6.8",
     "strapi-plugin-email": "3.6.8",
-    "strapi-plugin-graphql": "^3.6.8",
+    "strapi-plugin-graphql": "3.6.8",
     "strapi-plugin-i18n": "3.6.8",
     "strapi-plugin-upload": "3.6.8",
     "strapi-plugin-users-permissions": "3.6.8",
@@ -27,7 +27,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "72a77343-3639-45a8-9d45-e73aa5d05003"
+    "uuid": "abc0b608-d156-4248-bdea-bcfbd6c6b4fb"
   },
   "engines": {
     "node": ">=10.16.0 <=14.x.x",

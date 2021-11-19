@@ -63,8 +63,8 @@ const RestaurantDishes = () => {
                       style={{ height: 250 }}
                       src={
                     process.env.NODE_ENV === "production"
-                      ? res.image[0].url
-                      : `${process.env.NEXT_PUBLIC_API_URL}${res.image[0].url}`
+                      ? res.image.url
+                      : `${process.env.NEXT_PUBLIC_API_URL}${res.image.url}`
                   }
                     />
                   
