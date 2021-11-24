@@ -30,13 +30,13 @@ export default function Home({restaurants}) {
           value={query}
         />
        </InputGroup>  
-      </div>
-      <br/>
-       <ClientOnly>
+    </div>
+    <br/>
+      <ClientOnly>
         <RestaurantList search={query}/>
       </ClientOnly>
     
-      </div>
+    </div>
    
   </ApolloProvider>
   )
