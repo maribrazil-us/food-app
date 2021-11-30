@@ -114,3 +114,6 @@ build
 .strapi-updater.json
 
 settings.json
+jwt.js
+order.js
+server.js

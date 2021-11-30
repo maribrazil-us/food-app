@@ -33,8 +33,8 @@
       "pluginOptions": {}
     },
     "restaurant": {
-      "model": "restaurant",
-      "via": "dishes"
+      "via": "dishes",
+      "model": "restaurant"
     }
   }
 }

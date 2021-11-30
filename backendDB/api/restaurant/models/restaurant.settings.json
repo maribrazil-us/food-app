@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "restaurants",
   "info": {
-    "name": "restaurant"
+    "name": "restaurant",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -32,6 +33,9 @@
     "dishes": {
       "via": "restaurant",
       "collection": "dish"
+    },
+    "cuisine": {
+      "type": "string"
     }
   }
 }

@@ -16,6 +16,7 @@ import { googlelogin, login } from "../components/auth";
 import AppContext from "../components/context";
 import Link from "next/link";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function Login(props) {
   const [data, updateData] = useState({ identifier: "", password: "" });
@@ -40,9 +41,9 @@ function Login(props) {
       <Row>
         <Col sm="12" md={{ size: 5, offset: 3 }}>
           <div className="paper">
-            <div className="header">
-             
-            </div>
+          <div className="header" style={{background: '#d3d3d3'}}>
+            <h2 style={{padding: 40}}>Sign In</h2> 
+          </div>
             <section className="wrapper">
               {Object.entries(error).length !== 0 &&
                 error.constructor === Object &&
@@ -85,7 +86,7 @@ function Login(props) {
                       </a>
                     </span>
                     <Button
-                      style={{ float: "right", width: 120 }}
+                      style={{ float: "right", width: 175 }}
                       color="primary"
                       onClick={() => {
                         setLoading(true);
@@ -103,18 +104,21 @@ function Login(props) {
                     >
                       {loading ? "Loading... " : "Submit"}
                     </Button>
+                    </FormGroup>
                     <br/>
-                    <br/>
-                    <br/>
+                    <FormGroup>
                     <Button 
-                      style={{ float: "unset", width: 300 }}
+                      style={{ float: "right", width: 175 }}
+                      color="primary"
+                      outline
                       onClick={(e) => {
-                                window.location = 'http://localhost:1337/connect/google';
+                                window.location = 'https://food-app-backenddb.herokuapp.com/connect/google';
                               }}>
-                      Signin with Google
+                      Sign in with Google
                     </Button>
-                  
-                  </FormGroup>
+
+                    </FormGroup>
+                                      
                 </fieldset>
               </Form>
             </section>

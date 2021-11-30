@@ -1,6 +1,5 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, ApolloProvider } from "@apollo/client";
 import { useRouter } from "next/router";
-import RestaurantList from "../../components/restaurantList";
 import AppContext from "../../components/context";
 import Cart from "../../components/cart";
 import { useState } from "react";
@@ -14,7 +13,8 @@ import {
   Col,
   Row,
   InputGroup,
-  Input
+  Input,
+  Container
 } from "reactstrap";
 import { useContext } from "react";
 
@@ -34,10 +34,10 @@ const GET_RESTAURANT_DISHES = gql`
       }
     }
   }
-`;
+`
 
-const RestaurantDishes = () => {
-  const [query, setQuery] = useState("");
+const RestaurantDishes = (props) => {
+  const [query1, setQuery1] = useState("");
   const appContext = useContext(AppContext);
   const router = useRouter();
   const { data, loading, error } = useQuery(GET_RESTAURANT_DISHES, {
@@ -45,95 +45,131 @@ const RestaurantDishes = () => {
   });
 
   if (error) return "Error Loading dishes";
-  if (loading) return <h1>Loading ...</h1>;
-  if (data) {
-    const { restaurant } = data;
+  if (loading) return <p>Loading ...</p>;
+  if (!data) return <p>Not found</p>
+  const { restaurant } = data;
 
-    return (
-     
-      <>
+  const searchQuery = data.restaurant.dishes.filter((query) =>
+     query.name.toLowerCase().includes(query1)
+  );
+  console.log(searchQuery.length);
+  console.log(searchQuery.map((res) => (res.id)));
 
-      <h1>{restaurant.name}</h1>
+  searchQuery
 
-      <div className="search">
-      <InputGroup>
+  if(searchQuery.length != 0) {
+    return(
+
+       <Container >
+         <h1>{restaurant.name}</h1>
+        <InputGroup className="dish-search">
           <Button>Search</Button>
-        <Input
-          onChange={(e) => setQuery(e.target.value)}
+        <Input 
+          onChange={(e) => setQuery1(e.target.value)}
           type="string"
-          value={query}
-          placeholder="Find Dishes"
+          value={query1}
+          placeholder="find dishes"
         />
-       </InputGroup>
-
-      </div>
-      <br/>
-      <br/>
-        <Row>
-          {restaurant.dishes.map((res) => (
-            <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
-              <Card style={{ margin: "0 10px" }}>
+       </InputGroup>  
+        <br/>
+       
+       <Row>
+        {searchQuery.map((res) => (
+          <Col xs="6" sm="3" style={{ padding: 0 }} key={res.id}>
+            <Card style={{ margin: "0 10px" }}>
+              <CardImg
+                top={true}
+                style={{ height: 200 }}
+                src={
+                  process.env.NODE_ENV === "production"
+                    ? res.image.url
+                    : `${process.env.NEXT_PUBLIC_API_URL}${res.image.url}`
+                }
                 
-                    <CardImg
-                     
-                      top={true}
-                      style={{ height: 250 }}
-                      src={
-                      process.env.NODE_ENV === "production"
-                      ? res.image.url
-                      : `${process.env.NEXT_PUBLIC_API_URL}${res.image.url}`
-                      }
-                    />
-                  
-                <CardBody>
-                  <CardTitle>{res.name}</CardTitle>
-                  <CardText>{res.description}</CardText>
-                  <CardText>${res.price}</CardText>
-                </CardBody>
-
-                <div className="card-footer">
-                  <Button outline color="primary" onClick={() => appContext.addItem(res)}>
+              />
+              <CardBody>
+                <CardTitle tag="h5">{res.name}</CardTitle>
+                <CardText>{res.description}</CardText>
+                <CardText>${res.price}</CardText>
+              </CardBody>
+              <div className="card-footer">
+              <Button
+                    outline
+                    color="primary"
+                    onClick={() => appContext.addItem(res)}
+                  >
                     + Add To Cart
                   </Button>
+              </div>
+              </Card>
+            </Col>
+        ))}
 
-                  <style jsx>
+<style jsx>
                     {`
                       a {
                         color: white;
                       }
-
                       a:link {
                         text-decoration: none;
-
                         color: white;
                       }
-
                       .container-fluid {
                         margin-bottom: 30px;
                       }
-
                       .btn-outline-primary {
                         color: #007bff !important;
                       }
-
                       a:hover {
                         color: white !important;
                       }
                     `}
                   </style>
-                </div>
-              </Card>
-            </Col>
-          ))}
-          <Col xs="3" style={{ padding: 0 }}>
-          <div>
-              <Cart />
+    
+       
+        <Col xs="3" style={{ padding: 0 }}>
+            <div>
+              <Cart isAuthenticated="false" />
             </div>
-          </Col>
-        </Row>
-      </>
-    );
+        </Col>
+        
+      </Row>
+      </Container>
+    )
+  
   }
-};
 
-export default RestaurantDishes;
+  else {
+    return (   
+      
+      <Container>
+         <h1>{restaurant.name}</h1>
+        <InputGroup>
+          <Button>Search</Button>
+        <Input
+          onChange={(e) => setQuery1(e.target.value)}
+          type="string"
+          value={query1}
+          placeholder="find dishes"
+        />
+       </InputGroup>  
+        <br/>
+       <Row>
+         <h1>Dish not found</h1>
+        
+      </Row>
+      </Container>
+    )
+  
+  }
+}
+
+
+export default RestaurantDishes
+
+
+
+
+
+
+

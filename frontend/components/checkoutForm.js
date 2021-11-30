@@ -10,6 +10,7 @@ import AppContext from "./context";
 
 
 function CheckoutForm() {
+  
   const [data, setData] = useState({
     address: "",
     city: "",
@@ -119,7 +120,7 @@ function CheckoutForm() {
           }
           body,
           html {
-            background-color: #f6f9fc;
+            
             font-size: 18px;
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
           }
@@ -163,6 +164,19 @@ function CheckoutForm() {
             -webkit-transition: all 150ms ease;
             transition: all 150ms ease;
             margin-top: 10px;
+          }
+          .orderbutton {
+            background-color: #FFFFFF;
+            border-radius: none;
+            border: 0;
+            outline: 0;
+            box-shadow: none;
+          }
+          .orderbutton:hover {
+            background-color: #FFFFFF;
+            border-radius: 0px;
+            box-shadow: none;
+            cursor: none;
           }
           form {
             margin-bottom: 40px;

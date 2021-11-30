@@ -1,5 +1,3 @@
-/* /components/Layout.js */
-
 import React, { useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -68,10 +66,23 @@ const Layout = (props) => {
                   Logout
                 </a>
               </Link>
+              
+                            
             ) : (
               <Link href="/login" passHref>
                 <a className="nav-link">Sign in</a>
               </Link>
+            )}
+          </NavItem>
+          <NavItem>
+            {user ? (
+              <Link href="/my-orders" passHref>
+                <a>
+                  Orders
+                </a>
+              </Link>
+              ) : (
+              <h1/>
             )}
           </NavItem>
         </Nav>

@@ -3,13 +3,10 @@ import { useRouter } from "next/router";
 import { Button, Card, CardBody, CardTitle, Badge } from "reactstrap";
 import AppContext from "./context"
 import Link from "next/link"
-// we can pass cart data in via props method 
-// the alternative is using useContext as below
 
 function Cart() {
-  const appContext = useContext(AppContext);
- 
 
+  const appContext = useContext(AppContext);
   const { cart, isAuthenticated } = appContext;
 
   return (
@@ -73,37 +70,29 @@ function Cart() {
             {isAuthenticated ? (
               cart.items.length > 0 ? (
                 <div>
-                  <Badge style={{ width: 200, padding: 10 }} color="light">
+                  <Badge style={{ width: '100%', padding: 10 }} color="light">
                     <h5 style={{ fontWeight: 100, color: "gray" }}>Total:</h5>
                     <h3>${appContext.cart.total.toFixed(2)}</h3>
                   </Badge>
-                  
-                    
                       <Link href="/checkout">
-                        <Button style={{ width: "100%" }} color="primary">
-                          <a>Order</a>
+                        <Button className="orderbutton" style={{ width: "100%" }} color="primary">
+                          <a>ORDER</a>
                         </Button>
                       </Link>
-             
-                  
-                </div>
+                 </div>
               ) : (
                 <>
-                  
-                    <small
+                     <small
                       style={{ color: "blue" }}
-                      onClick={() => window.history.back()}
-                    >
-                      back to restaurant
-                    </small>
-                  
+                      onClick={() => window.history.back()}>
+                      back to restaurants
+                     </small>
                 </>
               )
             ) : (
               <h5>Login to Order</h5>
             )}
           </div>
-          
         </CardBody>
       </Card>
       <style jsx>{`
@@ -124,4 +113,5 @@ function Cart() {
     </div>
   );
 }
+
 export default Cart;

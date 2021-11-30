@@ -5,9 +5,9 @@ import AppContext from "../../../components/context";
 import React, { useState, useEffect, useContext } from "react";
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function handlGoogle() {
+export default function HandleGoogle() {
   
     const router = useRouter();
     const Location = router.query.access_token;

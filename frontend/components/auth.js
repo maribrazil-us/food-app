@@ -62,12 +62,12 @@ export const login = (identifier, password) => {
 
 export const logout = () => {
   //remove token and user cookie
+  Router.push("/");
   Cookie.remove("token");
   delete window.__user;
   // sync logout between multiple windows
   window.localStorage.setItem("logout", Date.now());
   //redirect to the home page
-  Router.push("/");
 };
 
 //Higher Order Component to wrap our pages and logout simultaneously logged in tabs

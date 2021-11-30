@@ -1,8 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-
-
 import {
   Card,
   CardBody,
@@ -19,6 +17,7 @@ const QUERY = gql`
       id
       name
       description
+      cuisine
       image {
         url
       }
@@ -27,6 +26,7 @@ const QUERY = gql`
 `;
 
 export default function RestaurantList(props) {
+
   const { data, loading, error } = useQuery(QUERY);
 
   if (loading) {
@@ -41,7 +41,8 @@ export default function RestaurantList(props) {
   if (data.restaurants && data.restaurants.length) {
     //searchQuery
     const searchQuery = data.restaurants.filter((query) =>
-      query.name.toLowerCase().includes(props.search)
+      query.name.toLowerCase().includes(props.search) || query.cuisine.toLowerCase().includes(props.search)
+      
     );
     if (searchQuery.length != 0) {
       return (
@@ -57,11 +58,15 @@ export default function RestaurantList(props) {
                       ? res.image.url
                       : `${process.env.NEXT_PUBLIC_API_URL}${res.image.url}`
                   }
-                  
                 />
                 <CardBody>
-                  <CardTitle>{res.name}</CardTitle>
+                  <CardTitle tag="h5">{res.name}</CardTitle>
                   <CardText>{res.description}</CardText>
+                  <CardText>
+                  <small className="text-muted">
+                    {res.cuisine}
+                  </small>
+                  </CardText>
                 </CardBody>
                 <div className="card-footer">
                   <Link
@@ -100,5 +105,4 @@ export default function RestaurantList(props) {
   }
   return <h5>Add Restaurants</h5>;
 
- 
 }

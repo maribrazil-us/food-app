@@ -15,6 +15,7 @@ import {
 import { registerUser } from "../components/auth";
 import AppContext from "../components/context";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const Register = () => {
   const [data, setData] = useState({ email: "", username: "", password: "" });
@@ -24,10 +25,10 @@ const Register = () => {
   return (
     <Container>
       <Row>
-        <Col sm="12" md={{ size: 5, offset: 3 }}>
+        <Col sm="6" md={{ size: 5, offset: 3 }}>
           <div className="paper">
-            <div className="header">
-             
+            <div className="header" style={{background: '#d3d3d3'}}>
+            <h2 style={{padding: 40}}>Create Account</h2> 
             </div>
             <section className="wrapper">
               {Object.entries(error).length !== 0 &&
@@ -90,7 +91,7 @@ const Register = () => {
                       </a>
                     </span>
                     <Button
-                      style={{ float: "right", width: 120 }}
+                      style={{ float: "right", width: 175 }}
                       color="primary"
                       disabled={loading}
                       onClick={() => {
@@ -110,7 +111,20 @@ const Register = () => {
                     >
                       {loading ? "Loading.." : "Submit"}
                     </Button>
-                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    <FormGroup>
+                    <Button 
+                      color="primary"
+                      outline
+                      style={{ float: "right", width: 175 }}
+                      onClick={(e) => {
+                          window.location = 'https://food-app-backenddb.herokuapp.com/connect/google';
+                        }}>
+                      Sign in with Google
+                    </Button>
+                    </FormGroup>
                   </FormGroup>
                 </fieldset>
               </Form>

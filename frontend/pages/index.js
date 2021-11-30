@@ -28,6 +28,7 @@ export default function Home({restaurants}) {
           onChange={(e) => setQuery(e.target.value)}
           type="string"
           value={query}
+          placeholder="find restaurant by name or cuisine"
         />
        </InputGroup>  
     </div>
